@@ -36,7 +36,7 @@ class ED(dotbot.Plugin):
 
     def _handle_ensure_lines(self, directive, data):
         for ensurance in data:
-            filepath = ensurance["file"]
+            filepath = os.path.expanduser(ensurance["file"])
             filelines = (
                 _readlines(filepath) if os.path.exists(filepath) else []
             )
