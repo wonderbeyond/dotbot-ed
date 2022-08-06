@@ -32,5 +32,7 @@ jobs:
             --plugin-dir ./dotbot-ed \
             -c ./dotbot-ed/tests/test-ed.yaml
       - name: Check results
-        run: echo OK
+        run: |
+          grep -E '^127\.0\.0\.1\s+localhost\s*$' ~/test-etc-hosts
+          grep -E '^10\.10\.10\.88\s+wonder-dev-001\s*$' ~/test-etc-hosts
         shell: bash
