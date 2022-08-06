@@ -26,9 +26,9 @@ Example config:
   - ensure_lines:
     - file: /etc/hosts
       lines:
-        - pattern: '^127\.0\.0\.1\s+localhost\b'
+        - pattern: '^127\.0\.0\.1\s+localhost[\s$]'
           content: '127.0.0.1  localhost'
-        - pattern: '^10\.10\.10\.88(\s+)wonder-dev-001\b'
+        - pattern: '^10\.10\.10\.88(\s+)wonder-dev-001[\s$]'
           content: '10.10.10.88  wonder-dev-001'
 ```
 
