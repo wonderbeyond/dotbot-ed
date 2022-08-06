@@ -1,0 +1,36 @@
+name: "Testing"
+
+on: [push, pull_request]
+
+jobs:
+  testing:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+    steps:
+      - name: Checkout dotbot-ed
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          path: ./dotbot-ed
+      - name: Checkout dotbot
+        uses: actions/checkout@v2
+        with:
+          repository: 'anishathalye/dotbot'
+          submodules: recursive
+          path: ./dotbot
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run dotbot
+        run: |
+          ./dotbot/bin/dotbot \
+            -d ./dotbot-ed/tests \
+            --plugin-dir ./dotbot-ed \
+            -c ./dotbot-ed/tests/test-ed.yaml'
+      - name: Check results
+        run: echo OK
+        shell: bash
