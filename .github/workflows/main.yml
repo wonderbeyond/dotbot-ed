@@ -35,7 +35,7 @@ jobs:
       - name: "Check results (01)"
         run: |
           set -eux
-          [ "$(wc -l ~/test-etc-hosts | cut -d' ' -f1)" = "2" ] || exit 1
+          [ "$(wc -l ~/test-etc-hosts | awk '{print $1}')" = "2" ] || exit 1
           grep -E '^127\.0\.0\.1\s+localhost\s*$' ~/test-etc-hosts
           grep -E '^10\.10\.10\.88\s+wonder-dev-001\s*$' ~/test-etc-hosts
         shell: bash
@@ -45,7 +45,7 @@ jobs:
       - name: "Check results (02)"
         run: |
           set -eux
-          [ "$(wc -l ~/test-etc-hosts | awk '{print $1}' || exit 1
+          [ "$(wc -l ~/test-etc-hosts | awk '{print $1}')" = "2" ] || exit 1
           grep -E '^127\.0\.0\.1\s+localhost\s*$' ~/test-etc-hosts
           grep -E '^10\.10\.10\.88\s+wonder-dev-001\s*$' ~/test-etc-hosts
         shell: bash
