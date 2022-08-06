@@ -30,7 +30,7 @@ jobs:
           ./dotbot/bin/dotbot \
             -d ./dotbot-ed/tests \
             --plugin-dir ./dotbot-ed \
-            -c ./dotbot-ed/tests/test-ed.yaml'
+            -c ./dotbot-ed/tests/test-ed.yaml
       - name: Check results
         run: echo OK
         shell: bash
