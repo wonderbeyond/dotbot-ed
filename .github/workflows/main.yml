@@ -49,3 +49,15 @@ jobs:
           grep -E '^127\.0\.0\.1\s+localhost\s*$' ~/test-etc-hosts
           grep -E '^10\.10\.10\.88\s+wonder-dev-001\s*$' ~/test-etc-hosts
         shell: bash
+
+      - name: "Run dotbot (03)"
+        run: $DOTBOT_CMD_BASE -c ./dotbot-ed/tests/actions-03-new-lines.yaml
+      - name: "Check results (03)"
+        run: |
+          set -eux
+          [ "$(wc -l ~/test-etc-hosts | awk '{print $1}')" = "4" ] || exit 1
+          grep -E '^127\.0\.0\.1\s+localhost\s*$' ~/test-etc-hosts
+          grep -E '^10\.10\.10\.88\s+wonder-dev-001\s*$' ~/test-etc-hosts
+          grep -E '^10\.10\.10\.89\s+wonder-dev-002\s*$' ~/test-etc-hosts
+          grep -E '^10\.10\.10\.90\s+wonder-dev-003\s*$' ~/test-etc-hosts
+        shell: bash
